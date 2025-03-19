@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 Layerify AI
 
-## Getting Started
+### 🚀 An AI-powered web app built with Next.js to remove image backgrounds, add text between layers, and change backgrounds effortlessly.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📌 **Features**
+
+- 🎯 Remove image backgrounds with AI.
+- ✨ Add text between layers.
+- 🖼️ Change and customize background.
+- 🪄 Download high-quality images.
+- 🌐 SEO-optimized and blazing fast with Next.js 15.
+
+---
+
+## 🛠️ **Tech Stack**
+
+- ✅ Next.js 15 (App Router)
+- ✅ Tailwind CSS
+- ✅ React Context API
+- ✅ TypeScript
+
+---
+
+## 🖥️ **Project Structure**
+
+```
+.next/
+│
+├── app/
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│
+├── components/
+├── lib/
+├── node_modules/
+├── public/
+│
+├── .gitignore
+├── components.json
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tsconfig.json
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🖼️ **Demo Preview**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🚀 Live Demo: [layerify-ai.vercel.app](https://layerify-ai.vercel.app)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔥 **Installation Guide**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Clone the repository
+git clone https://github.com/YogeshSinghChilwal/layerify-ai.git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Move to the project folder
+cd layerify-ai
 
-## Deploy on Vercel
+# Install dependencies
+npm install
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Run the development server
+npm run dev
+```
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌟 **Contributors**
+
+- 👤 Yogesh Singh Chilwal
+- 🛠️ Open for Contributions
+
+---
+
+## 📬 **Contact Me**
+
+📩 Email: 
+
+---
+
