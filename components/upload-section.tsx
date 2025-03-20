@@ -14,8 +14,8 @@ import {
 import { toast } from "sonner";
 
 const UploadSection = () => {
-  const [action, setAction] = useState<String | null>(null);
-  const [imgSrc, setImgSrc] = useState<String | null>(null)
+  const [action, setAction] = useState<string | null>(null);
+  const [imgSrc, setImgSrc] = useState<string | null>(null)
   const router = useRouter();
 
   const setSelectedImage = (file?: File) => {

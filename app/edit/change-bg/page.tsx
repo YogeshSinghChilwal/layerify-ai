@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 const Page = () => {
@@ -11,7 +12,7 @@ const Page = () => {
   return (
     <div className='text-3xl text-white'>
       Change
-      {imgSrc && <img width={200} src={imgSrc } />}
+      {imgSrc && <Image src={imgSrc } width={200} height={100}  alt='image' unoptimized={true}/> }
     </div>
   )
 }

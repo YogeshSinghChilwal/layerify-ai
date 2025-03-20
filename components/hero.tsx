@@ -3,7 +3,6 @@ import React from "react";
 import { Cover } from "./ui/cover";
 import { kumbh_Sans } from "@/components/ui/fonts";
 import { Compare } from "./ui/compare";
-import Link from "next/link";
 import LinkButton from "./link-button";
 
 const Hero = () => {
