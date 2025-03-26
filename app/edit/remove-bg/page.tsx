@@ -1,8 +1,7 @@
 "use client";
 
 import RemovedBgImage from "@/components/remove-background/remove-bg-image";
-import { Button } from "@/components/ui/button";
-import { MoveLeft } from "lucide-react";
+import { ArrowLeft } from 'lucide-react';
 import Link from "next/link";
 
 const Page = () => {
@@ -10,12 +9,12 @@ const Page = () => {
     <div>
       <div className="h-screen flex justify-center items-center">
         <div className="flex  justify-betweenv pb-5 relative">
-          <div className="absolute top-[-80] md:top-[-50] lg:top-[-20] sm:left-[-100] md:left-[-200] lg:left-[-250]">
+          <div className="absolute top-[-40]">
             <Link href={"/upload-image"}>
-              <Button className="bg-white text-black hover:bg-gray-300">
-                <MoveLeft />
-                Go Back
-              </Button>
+              <div className="flex gap-2 items-center justify-center text-white ">
+                <ArrowLeft />
+                <p>Go Back</p>
+              </div>
             </Link>
           </div>
 
