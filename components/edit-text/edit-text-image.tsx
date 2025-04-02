@@ -13,12 +13,7 @@ import {
 } from "../ui/select";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 import { Slider } from "../ui/slider";
 import ColorPickerPanel from "./color-picker";
@@ -29,7 +24,7 @@ const presets = {
     fontWeight: "bold",
     color: "rgba(255, 255, 255, 1)",
     opacity: 1,
-  }
+  },
 };
 
 const EditTextImage = () => {
@@ -41,9 +36,12 @@ const EditTextImage = () => {
   //* font style
   const [text, setText] = useState("VLOG");
   const [font, setFont] = useState("arial");
-  const [textSize, setTextSize] = useState<number>(0)
+  const [textSize, setTextSize] = useState<number>(0);
   const [sliderValue, setSliderValue] = useState(10);
-    const [color, setColor] = useState("#ffffff"); // Default black 
+  const [color, setColor] = useState("#ffffff"); // Default black
+  const [textAlign, setTextAlign] = useState<CanvasTextAlign>("center");
+  const [textBaseline, setTextBaseline] =
+    useState<CanvasTextBaseline>("middle");
 
   useEffect(() => {
     const imgUrl = sessionStorage.getItem("uploadedImage");
@@ -64,7 +62,7 @@ const EditTextImage = () => {
     if (canvasReady) {
       drawCompositeImage();
     }
-  }, [canvasReady, sliderValue, color, font, text]);
+  }, [canvasReady, sliderValue, color, font, text, textAlign, textBaseline]);
 
   const drawCompositeImage = () => {
     if (!canvasRef.current || !canvasReady || !imgSrc || !processedImgSrc)
@@ -87,9 +85,8 @@ const EditTextImage = () => {
 
       ctx.save();
 
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      
+      ctx.textAlign = textAlign;
+      ctx.textBaseline = textBaseline;
 
       let fontSize = 100;
       const selectFont = font;
@@ -99,11 +96,11 @@ const EditTextImage = () => {
       const targetWidth = canvas.width * 0.4;
 
       fontSize *= targetWidth / textWidth;
-      
-      if(textSize == 0){
-        setTextSize(fontSize)
+
+      if (textSize == 0) {
+        setTextSize(fontSize);
       }
-      
+
       ctx.font = `${preset.fontWeight} ${textSize}px ${selectFont}`;
 
       ctx.fillStyle = preset.color;
@@ -113,7 +110,7 @@ const EditTextImage = () => {
       const y = canvas.height / 2;
 
       ctx.translate(x, y);
-      ctx.fillStyle = color 
+      ctx.fillStyle = color;
       ctx.fillText(text, 0, 0);
       ctx.restore();
 
@@ -129,9 +126,23 @@ const EditTextImage = () => {
   };
 
   const handleDownload = () => {
-    if (!processedImgSrc) return;
+    if (!canvasRef.current || !processedImgSrc) return;
 
-    console.log("hrllo");
+    canvasRef.current.toBlob(
+      (blob) => {
+        if (!blob) {
+          return;
+        }
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `added-text-${text}-layerify.webp`;
+        link.click();
+
+        URL.revokeObjectURL(link.href);
+      },
+      "image/webp",
+      0.5
+    );
   };
 
   return (
@@ -164,38 +175,87 @@ const EditTextImage = () => {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-              <ColorPickerPanel color={color} setColor={setColor} />
-                <Label htmlFor="font">Font</Label>
-                <Select value={font} onValueChange={(value) => setFont(value)}>
-                  <SelectTrigger id="font" className="text-black">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="arial">Arial</SelectItem>
-                    <SelectItem value="inter">Inter</SelectItem>
-                    <SelectItem value="domine">Domine</SelectItem>
-                  </SelectContent>
-                </Select>
+                <ColorPickerPanel color={color} setColor={setColor} />
+                <div className="flex gap-3">
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="font">Font</Label>
+                    <Select
+                      value={font}
+                      onValueChange={(value) => setFont(value)}
+                    >
+                      <SelectTrigger id="font" className="text-black">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent position="popper">
+                        <SelectItem value="arial">Arial</SelectItem>
+                        <SelectItem value="inter">Inter</SelectItem>
+                        <SelectItem value="domine">Domine</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="text-align">Text Align</Label>
+                    <Select
+                      value={textAlign}
+                      onValueChange={(value) =>
+                        setTextAlign(value as CanvasTextAlign)
+                      }
+                    >
+                      <SelectTrigger id="text-align" className="text-black">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent position="popper">
+                        <SelectItem value="center">Center</SelectItem>
+                        <SelectItem value="end">End</SelectItem>
+                        <SelectItem value="left">Left</SelectItem>
+                        <SelectItem value="right">Right</SelectItem>
+                        <SelectItem value="start">Start</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="text-base-line">Text Baseline</Label>
+                    <Select
+                      value={textBaseline}
+                      onValueChange={(value) =>
+                        setTextBaseline(value as CanvasTextBaseline)
+                      }
+                    >
+                      <SelectTrigger id="text-base-line" className="text-black">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent position="popper">
+                        <SelectItem value="alphabetic">Alphabetic</SelectItem>
+                        <SelectItem value="bottom">Bottom</SelectItem>
+                        <SelectItem value="hanging">Hanging</SelectItem>
+                        <SelectItem value="ideographic">Ideoraphic</SelectItem>
+                        <SelectItem value="middle">Middle</SelectItem>
+                        <SelectItem value="top">Top</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
               </div>
               <div className="flex flex-col gap-3">
-              <Label htmlFor="slidebar">Font Size</Label>
+                <Label htmlFor="slidebar">Font Size</Label>
                 <Slider
                   defaultValue={[10]}
                   id="slidebar"
                   max={1000}
                   step={1}
-                  onValueChange={(value) => {const newSliderValue = value[0];
+                  onValueChange={(value) => {
+                    const newSliderValue = value[0];
                     const diff = newSliderValue - sliderValue; // Compare with previous value
                     setTextSize((prevSize) => prevSize + diff); // Adjust textSize accordingly
                     setSliderValue(newSliderValue); // Update slider value
-                    }}
+                  }}
                   className={"w-[90%]"}
                 />
               </div>
             </div>
           </CardContent>
         </Card>
-        
       </div>
       <div className={kumbh_Sans.className}>
         <button
