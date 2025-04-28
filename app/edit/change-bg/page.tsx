@@ -1,20 +1,27 @@
-"use client"
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import ChangeBg from "@/components/change-background/change-bg";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const Page = () => {
-    const [imgSrc , setImgSrc] = useState<string | null>(null)
-
-    useEffect(() => {
-        const imgUrl = sessionStorage.getItem("uploadedImage")
-        setImgSrc(imgUrl)
-    }, []) 
   return (
-    <div className='text-3xl text-white'>
-      Change
-      {imgSrc && <Image src={imgSrc } width={200} height={100}  alt='image' unoptimized={true}/> }
-    </div>
-  )
-}
+    <div>
+      <div className="flex justify-center items-center pt-10 px-5 mt-10">
+        <div className="flex  justify-between pb-5 relative">
+          <div className="absolute top-[-40]">
+            <Link href={"/upload-image"}>
+              <div className="flex gap-2 items-center justify-center text-white ">
+                <ArrowLeft />
+                <p>Go Back</p>
+              </div>
+            </Link>
+          </div>
 
-export default Page
+          <div>
+            <ChangeBg />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Page;

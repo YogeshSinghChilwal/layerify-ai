@@ -126,7 +126,7 @@ const RemovedBgImage = () => {
     <div className="flex flex-col justify-center items-center gap-10">
       <div>
         {processedImgSrc ? (
-          <div className="w-[300] h-[300] lg:w-[400] lg:h-[400]">
+          <div className="w-[300] min-h-[300] lg:w-[400] lg:h-[400]">
             <canvas ref={canvasRef} className="w-full h-full object-contain"></canvas>
           </div>
         ) : (

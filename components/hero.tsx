@@ -7,8 +7,8 @@ import LinkButton from "./link-button";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-full gap-5 lg:pb-10 p-5">
-      <div className="flex flex-col md:flex-row items-center md:justify-center sm:pt-12 md:pt-0 pb-5 gap-10 lg:gap-16">
+    <div className="flex flex-col items-center justify-center h-screen w-full gap-8 lg:pb-10 p-5">
+      <div className="flex flex-col md:flex-row items-center md:justify-center sm:pt-12 md:pt-0 pb-5 gap-10 lg:gap-16 ">
         <div className="flex flex-col gap-5">
           <div className="">
             <Image
@@ -42,7 +42,16 @@ const Hero = () => {
           />
         </div>
       </div>
-      <LinkButton link="/upload-image" text="Get Statred"/>
+      <div>
+        <div>
+          <LinkButton link="/upload-image" text="Get Statred" />
+        </div>
+        <div className="">
+          <p className="mt-2 text-sm text-gray-400">
+            No signup. Just drag & drop.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Dropzone = ({
           htmlFor="file-upload"
           className="relative flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-[#F0EFEF] bg-white px-10 py-10"
         >
-          <div className="absolute inset-3 rounded-xl border border-dashed border-[#F0EFEF]"></div>
+          <div className="absolute inset-3 rounded-xl border border-dashed border-black"></div>
           <svg
             width="47"
             height="47"

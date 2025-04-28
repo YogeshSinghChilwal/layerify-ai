@@ -17,7 +17,6 @@ const Page = () => {
           </div>
 
           <div>
-              {/* add edit here */}
               <EditTextImage/>
             </div>
         </div>
